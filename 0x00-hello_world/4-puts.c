@@ -8,6 +8,6 @@
  */
 int main(void)
 {
-    puts("\"ALX is the best");
+    puts("\"Programming is like building a multilingual puzzle");
     return (0);
 }
