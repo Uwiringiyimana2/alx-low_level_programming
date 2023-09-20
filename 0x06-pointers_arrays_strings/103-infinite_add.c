@@ -1,59 +1,66 @@
-#include "main.h"
-#include <stdio.h>
-
 /**
- * main - check the code for Holberton School students.
+ * infinite_add - Add up two numbers stored in given char arrays
+ * @n1: The first number
+ * @n2: The second number
+ * @r: Pointer to the buffer to store result
+ * @size_r: The size of the buffer
  *
- * Return: Always 0.
+ * Return: 0 if buffer too small to store result, else return pointer to buffer
  */
-int main(void)
+char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	char *n = "1234567892434574367823574575678477685785645685876876774586734734563456453743756756784458";
-	char *m = "9034790663470697234682914569346259634958693246597324659762347956349265983465962349569346";
-	char r[100];
-	char r2[10];
-	char r3[11];
-	char *res;
+	int l1, l2, tmpl, rl, i, sum, num1, num2, carry;
+	char tmp[10000];
 
-	res = infinite_add(n, m, r, 100);
-	if (res == 0)
+	rl = i = l1 = l2 = sum = num1 = num2 = carry = 0;
+	while (n1[l1] != '\0')
+		l1++;
+	while (n2[l2] != '\0')
+		l2++;
+	if (l1 + 2 > size_r || l2 + 2 > size_r)
+		return (0);
+	l1--;
+	l2--;
+	while (i <= l1 || i <= l2)
 	{
-		printf("Error\n");
+		num1 = num2 = 0;
+		if (i <= l1)
+			num1 = n1[l1 - i] - '0';
+		if (i <= l2 && (l2 - i) >= 0)
+			num2 = n2[l2 - i] - '0';
+		sum = num1 + num2 + carry;
+		if (sum >= 10)
+		{
+			carry = 1;
+			sum -= 10;
+		}
+		else
+			carry = 0;
+		r[i] = sum + '0';
+		i++;
+		rl++;
 	}
-	else
+	if (carry > 0)
 	{
-		printf("%s + %s = %s\n", n, m, res);
+		r[i] = carry + '0';
+		r[i + 1] = '\0';
 	}
-	n = "1234567890";
-	m = "1";
-	res = infinite_add(n, m, r2, 10);
-	if (res == 0)
+	i = tmpl = 0;
+	while (i <= rl)
 	{
-		printf("Error\n");
+		tmp[i] = r[rl - i];
+		tmpl++;
+		i++;
 	}
-	else
+	i = 0;
+	while (i < tmpl)
 	{
-		printf("%s + %s = %s\n", n, m, res);
+		if (r[i] == '\0')
+		{
+			break;
+		}
+		r[i] = tmp[i];
+		i++;
 	}
-	n = "999999999";
-	m = "1";
-	res = infinite_add(n, m, r2, 10);
-	if (res == 0)
-	{
-		printf("Error\n");
-	}
-	else
-	{
-		printf("%s + %s = %s\n", n, m, res);
-	}
-	res = infinite_add(n, m, r3, 11);
-	if (res == 0)
-	{
-		printf("Error\n");
-	}
-	else
-	{
-		printf("%s + %s = %s\n", n, m, res);
-	}
-	return (0);
+	return (r);
 }
