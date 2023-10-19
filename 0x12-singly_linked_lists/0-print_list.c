@@ -6,7 +6,6 @@
  *
  *Return: the numbers of nodes
  */
-  
 size_t print_list(const list_t *h)
 {
 	unsigned int count = 0;
@@ -15,11 +14,11 @@ size_t print_list(const list_t *h)
 		printf("[0] (nil)\n");
 
 	while (h != NULL)
-	{	
+	{
 		count++;
 		printf("[%d] %s\n", h->len, h->str);
 		h = h->next;
 	}
-	return count;
+	return (count);
 }
 
