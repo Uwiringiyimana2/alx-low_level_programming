@@ -2,10 +2,10 @@
 #include <string.h>
 
 /**
- * add_note_end - function that adds a new node at the end of a list_t list
- * @head: pointer to the list
- * @str: string of new node
- * Return: address of new element or null if not successful
+ * add_node_end - add new node to the end of list_t
+ * @head: pointer to the pointer of beginning of list_t
+ * @str: string to be added
+ * Return: New node added
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
@@ -20,7 +20,6 @@ list_t *add_node_end(list_t **head, const char *str)
 	add->str = strdup(str);
 	add->len = a;
 	add->next = NULL;
-	
 	if (*head == NULL)
 		*head = add;
 	else
