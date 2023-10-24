@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
- * find_listint_loop_pl - finds a loop in a linked list
+ * find_listint_loop_fl - finds a loop in a linked list
  *
  * @head: linked list to search
  *
@@ -27,7 +27,7 @@ listint_t *find_listint_loop_fl(listint_t *head)
 
 /**
  * free_listint_safe - frees a listint_t linked list; even if it has a loop
- * @head: a pointer to the head of nodes in the linked list
+ * @h: a pointer to the head of nodes in the linked list
  * Return: the number of nodes freed
  */
 size_t free_listint_safe(listint_t **h)
