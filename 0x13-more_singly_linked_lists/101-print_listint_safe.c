@@ -1,27 +1,52 @@
 #include "lists.h"
+
+/**
+ * find_listint_loop_pl - finds a loop in a linked list
+ *
+ * @head: linked list to search
+ *
+ * Return: address of node where loop starts/returns, NULL if no loop
+ */
+listint_t *find_listint_loop_pl(listint_t *head)
+{
+	listint_t *ptr, *end;
+
+	if (head == NULL)
+		return (NULL);
+
+	for (end = head->next; end != NULL; end = end->next)
+	{
+		if (end == end->next)
+			return (end);
+		for (ptr = head; ptr != end; ptr = ptr->next)
+			if (ptr == end->next)
+				return (end->next);
+	}
+	return (NULL);
+}
+
 /**
  * print_listint_safe - prints a listint_t linked list
  * @head: a pointer to the head of nodes in the linked list
  * Return: the number of nodes in the list
  */
-size_t free_listint_safe(listint_t **h)
+size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *current = head;
-	size_t node_count = 0;
-	const listint_t *visited[1024];
+	size_t len = 0;
+	int loop;
+	listint_t *loopnode;
 
-	while (current)
+	loopnode = find_listint_loop_pl((listint_t *) head);
+
+	for (len = 0, loop = 1; (head != loopnode || loop) && head != NULL; len++)
 	{
-		size_t i;
-		for (i = 0; i < node_count; i++)
-		{
-			printf("-> [%p] %d\n", (void *)current, current->n);
-			return (node_count)
-		}
+		printf("[%p] %d\n", (void *) head, head->n);
+		if (head == loopnode)
+			loop = 0;
+		head = head->next;
 	}
 
-	visited[node_count] = current;
- 	printf("[%p] %d\n", (void *)current, current->n);
-	current = current->next;
-	node_count++;
+	if (loopnode != NULL)
+		printf("-> [%p] %d\n", (void *) head, head->n);
+	return (len);
 }
