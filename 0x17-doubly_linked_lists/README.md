@@ -1,0 +1,9 @@
+0x17-doubly_linked_lists
+
+General Objectives
+What is a doubly linked list
+How to use doubly linked lists
+Understand and know how to implement the various operations (deletion, insertion, etc) with doubly linked lists
+Start to look for the right source of information without too much help
+
+it has 9 mandatory tasks and 3 advanced tasks
