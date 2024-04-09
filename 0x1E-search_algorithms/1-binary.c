@@ -16,6 +16,14 @@ int binary_search(int *array, size_t size, int value)
 	return (binary_search_a(array, 0, size - 1, value));
 }
 
+/**
+ * binary_search_a - binary search
+ * @array: pointer to the first element of the array to search in
+ * @value: the value to search for
+ * @start: starting index
+ * @end: ending index
+ * Return: index where value is located else -1
+ */
 int binary_search_a(int *array, size_t start, size_t end, int value)
 {
 	size_t i;
