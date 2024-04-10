@@ -41,7 +41,7 @@ int binary_search_a(int *array, size_t start, size_t end, int value)
 			if (mid == start || array[mid - 1] != value)
 				return (mid);
 			else
-				return (binary_search_a(array, start, mid - 1, value));
+				return (binary_search_a(array, start, mid, value));
 		}
 		if (array[mid] < value)
 			return (binary_search_a(array, mid + 1, end, value));
